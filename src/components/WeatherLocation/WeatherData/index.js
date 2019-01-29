@@ -1,5 +1,5 @@
 import React from 'react'
-import PropType from 'prop-types'
+import PropTypes from 'prop-types'
 import WeatherExtraInfo from './WeatherExtraInfo'
 import WeatherTemperature from './WeatherTemperature'
 import './styles.css'
@@ -15,11 +15,13 @@ const WeatherData = ({ data : {temperature, weatherState, humidity, wind } }) =>
   )
 };
 
-WeatherData.propType = {
-  data: PropType.shape(
+WeatherData.propTypes = {
+  data: PropTypes.shape({
     temperature: PropTypes.number.isRequired,
-    weatherState: PropType
-  )
+    weatherState: PropTypes.string.isRequired,
+    humidity: PropTypes.number.isRequired,
+    wind: PropTypes.string.isRequired,
+  }),
 };
 
 export default WeatherData;

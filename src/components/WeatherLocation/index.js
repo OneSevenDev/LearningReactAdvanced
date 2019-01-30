@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Location from './Location'
 import WeatherData from './WeatherData'
-import { SUN, WINDY } from './../../constants/weathers'
+import { SUN } from './../../constants/weathers'
 import './styles.css'
 
 const location = "Buenos Aires, ar";
@@ -17,13 +17,6 @@ const data = {
   wind: '10 m/s',
 }
 
-const dataTest = {
-  temperature: 15,
-  weatherState: WINDY,
-  humidity: 10,
-  wind: '15.2 m/s',
-}
-
 class WeatherLocation extends Component {
   constructor() {
     super();
@@ -32,11 +25,32 @@ class WeatherLocation extends Component {
       data: data,
     }
   }
+  getWeahterState = weather_data => {
+    return SUN;
+  }
+  getData = weather_data => {
+    const { humidity, temp } = weather_data.main;
+    const { speed } = weather_data.wind;
+    const { name } = weather_data;
+    const weatherState = this.getWeahterState(weather_data);
+    const data = {
+      city: name,
+      humidity,
+      temperature: temp/32,
+      weatherState,
+      wind: `${speed} m/s`
+    };
+    return data;
+  };
   handleUpdateClick = () => {
-    fetch(api_weather);
-    this.setState({
-      city: "Huanchaco",
-      data: dataTest,
+    fetch(api_weather).then( resolve => {
+      return resolve.json();
+    }).then( data => {
+      const newWeather = this.getData(data);
+      this.setState({
+        city: newWeather.city,
+        data: newWeather
+      });
     });
   }
   render() {

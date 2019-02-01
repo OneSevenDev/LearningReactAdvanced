@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
+import LocationList from './components/LocationList'
 import './App.css';
-import WeatherLocation from './components/WeatherLocation'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <WeatherLocation city={"Trujillo, pe"} />
+        <LocationList />
       </div>
     );
   }

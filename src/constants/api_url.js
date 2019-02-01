@@ -1,5 +1,5 @@
 
-const location = "La Libertad, pe";
+const location = "Trujillo, pe";
 const api_key = "7f5525e739d5c5d34c8d0be8320af62d";
 const url_base_weather = "https://api.openweathermap.org/data/2.5/weather";
 

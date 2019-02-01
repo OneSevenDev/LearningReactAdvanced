@@ -14,13 +14,32 @@ const data = {
 }
 
 class WeatherLocation extends Component {
+
   constructor() {
     super();
     this.state = {
       city: "Trujillo",
       data: data,
     }
+    console.log("constructor");
   }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log("componentDidUpdate");
+  }
+  
+  componentWillMount() {
+    console.log("UNSAFE componentWillMount");
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log("UNSAFE componentWillUpdate");
+  }
+  
   handleUpdateClick = () => {
     fetch(api_weather).then( resolve => {
       return resolve.json();
@@ -32,7 +51,9 @@ class WeatherLocation extends Component {
       });
     });
   }
+
   render() {
+    console.log("render");
     const { city, data } = this.state;
     return (
       <div className="weatherLocationCont">

@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress'
 import transformWeather from './../../services/transformWeather';
 import { api_weather } from './../../constants/api_url'
 import Location from './Location';
 import WeatherData from './WeatherData';
-import { SUN } from './../../constants/weathers';
 import './styles.css';
-
-const data = {
-  temperature: 20,
-  weatherState: SUN,
-  humidity: 10,
-  wind: '10 m/s',
-}
 
 class WeatherLocation extends Component {
 
@@ -19,31 +12,25 @@ class WeatherLocation extends Component {
     super();
     this.state = {
       city: "Trujillo",
-      data: data,
+      data: null,
     }
     console.log("constructor");
   }
 
   componentDidMount() {
     console.log("componentDidMount");
+    this.handleUpdateClick();
   }
 
   componentDidUpdate(prevProps, prevState) {
     console.log("componentDidUpdate");
   }
   
-  componentWillMount() {
-    console.log("UNSAFE componentWillMount");
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log("UNSAFE componentWillUpdate");
-  }
-  
   handleUpdateClick = () => {
     fetch(api_weather).then( resolve => {
       return resolve.json();
     }).then( data => {
+      console.log("get data handleUpdateClick");
       const newWeather = transformWeather(data);
       this.setState({
         city: newWeather.city,
@@ -51,15 +38,16 @@ class WeatherLocation extends Component {
       });
     });
   }
-
+  
   render() {
     console.log("render");
     const { city, data } = this.state;
     return (
       <div className="weatherLocationCont">
         <Location city={city} />
-        <WeatherData data={data} />
-        <button onClick={this.handleUpdateClick}>Update</button>
+        { data ?
+         <WeatherData data={data} /> :
+         <CircularProgress /> }
       </div>
     );
   }

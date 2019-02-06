@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import WeatherLocation from './WeatherLocation'
+import PropTypes from 'prop-types';
+import WeatherLocation from './WeatherLocation';
 
 const LocationList = ({ cities, onSelectedLocation }) => {
   const handleWeatherLocationClick = city => {

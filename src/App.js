@@ -4,12 +4,12 @@ import LocationList from './components/LocationList'
 import './App.css';
 
 const cities = [
-  { cityId: '1', cityName: 'Lima, pe' },
-  { cityId: '2', cityName: 'Buenos Aires, ar' },
-  { cityId: '3', cityName: 'Bogota, col' },
-  { cityId: '4', cityName: 'Washington, us' },
-  { cityId: '5', cityName: 'Madrid, es' },
-  { cityId: '5', cityName: 'Ciudad de México, mx' },
+  'Lima, pe',
+  'Buenos Aires, ar',
+  'Bogota, col',
+  'Washington, us',
+  'Madrid, es',
+  'Ciudad de México, mx',
 ];
 
 class App extends Component {
